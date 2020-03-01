@@ -1,0 +1,26 @@
+Arguments: 
+  /Users/rlorenzo/Desktop/ftc-dashboard-master/FtcDashboard/.gradle/nodejs/node-v12.9.0-darwin-x64/bin/node /Users/rlorenzo/Desktop/ftc-dashboard-master/FtcDashboard/.gradle/yarn/yarn-latest/bin/yarn install
+
+PATH: 
+  /Users/rlorenzo/Desktop/ftc-dashboard-master/FtcDashboard/.gradle/yarn/yarn-latest/bin:/Users/rlorenzo/Desktop/ftc-dashboard-master/FtcDashboard/.gradle/nodejs/node-v12.9.0-darwin-x64/bin:/Users/rlorenzo/Desktop/ftc-dashboard-master/FtcDashboard/.gradle/nodejs/node-v12.9.0-darwin-x64/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/puppetlabs/bin:/usr/local/munki:/Library/Frameworks/Mono.framework/Versions/Current/Commands
+
+Yarn version: 
+  1.22.0
+
+Node version: 
+  12.9.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: ENOENT: no such file or directory, copyfile '/Users/rlorenzo/Library/Caches/Yarn/v6/npm-@svgr-plugin-svgo-4.3.1-daac0a3d872e3f55935c6588dd370336865e9e32-integrity/node_modules/@svgr/plugin-svgo/LICENSE' -> '/Users/rlorenzo/Desktop/ftc-dashboard-master/FtcDashboard/dash/node_modules/@svgr/plugin-svgo/LICENSE'
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
