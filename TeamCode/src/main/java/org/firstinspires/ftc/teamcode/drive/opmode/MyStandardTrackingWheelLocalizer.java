@@ -7,6 +7,7 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.localization.ThreeTrackingWheelLocalizer;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.RobotLog;
 
 import java.util.Arrays;
 import java.util.List;
@@ -54,7 +55,7 @@ public class MyStandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalize
     @NonNull
     @Override
     public List<Double> getWheelPositions() {
-
+        RobotLog.d("***** Localizer getWheelPosition is called. ");
         return Arrays.asList(
 
                 encoderTicksToInches(leftEncoder.getCurrentPosition()),
