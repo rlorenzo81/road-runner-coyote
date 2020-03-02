@@ -62,7 +62,6 @@ public class SampleMecanumDriveBNB extends MecanumDrive {
 
 
 
-  //public static MyStandardTrackingWheelLocalizer local3;
 
     public enum Mode {
         IDLE,
