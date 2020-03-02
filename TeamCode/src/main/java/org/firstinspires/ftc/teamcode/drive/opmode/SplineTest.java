@@ -18,7 +18,7 @@ public class SplineTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         SampleMecanumDriveBNB drive = new SampleMecanumDriveBNB(hardwareMap);
-
+drive.setLocalizer(new MyStandardTrackingWheelLocalizer(hardwareMap));
 
         waitForStart();
 
