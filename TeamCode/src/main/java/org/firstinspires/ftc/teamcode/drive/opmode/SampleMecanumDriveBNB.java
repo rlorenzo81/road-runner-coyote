@@ -58,9 +58,9 @@ import static org.firstinspires.ftc.teamcode.drive.DriveConstants.kV;
 @Config
 public class SampleMecanumDriveBNB extends MecanumDrive {
 
-    public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(2, 0, 0);
+    public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(2, 0, 0);//2
 
-    public static PIDCoefficients HEADING_PID = new PIDCoefficients(2, 0, 0);
+    public static PIDCoefficients HEADING_PID = new PIDCoefficients(1.5, 0, 0);//1.5
 
 
 
@@ -87,7 +87,7 @@ public class SampleMecanumDriveBNB extends MecanumDrive {
 
     private DcMotorEx leftFront, leftRear, rightRear, rightFront;
     private List<DcMotorEx> motors;
-    private BNO055IMU imu;
+   private BNO055IMU imu;
 
 
     public SampleMecanumDriveBNB(HardwareMap hardwareMap) {
