@@ -23,25 +23,7 @@ drive.setLocalizer(new MyStandardTrackingWheelLocalizer(hardwareMap));
         waitForStart();
 
         if (isStopRequested()) return;
-/*
-        drive.followTrajectorySync(
-                drive.trajectoryBuilder()
-                        .splineTo(new Pose2d(30, 30, 0))
-                        .build()
-        );
 
-
-
-        sleep(2000);
-
-        drive.followTrajectorySync(
-                drive.trajectoryBuilder()
-                        .reverse()
-                        .splineTo(new Pose2d(0, 0, 0))
-                        .build()
-        );
-
- */
         Trajectory traj = drive.trajectoryBuilder(new Pose2d())
                 .splineTo(new Pose2d(30, 30, 0))
                 .build();
