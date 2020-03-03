@@ -4,10 +4,13 @@ import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+
+import static android.os.SystemClock.sleep;
 
 /**
  * This is a simple teleop routine for testing localization. Drive the robot around like a normal
@@ -23,11 +26,40 @@ public class LocalizationTest extends LinearOpMode {
     public static double VY_WEIGHT = 1;
     public static double OMEGA_WEIGHT = 1;
 
+
     @Override
     public void runOpMode() throws InterruptedException {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+        BNO055IMU imu;
 
         SampleMecanumDriveBNB drive = new SampleMecanumDriveBNB(hardwareMap);
+        imu = hardwareMap.get(BNO055IMU.class, "imu");
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
+        //byte AXIS_MAP_CONFIG_BYTE = 0b000110; // to swap x and z axes
+        byte AXIS_MAP_CONFIG_BYTE = 0b011000; //to swap y and z
+
+        byte AXIS_MAP_SIGN_BYTE = 0x1; //This is what to write to the AXIS_MAP_SIGN register to negate the z axis
+
+//Need to be in CONFIG mode to write to registers
+        imu.write8(BNO055IMU.Register.OPR_MODE,BNO055IMU.SensorMode.CONFIG.bVal & 0x0F);
+
+        sleep(100); //Changing modes requires a delay before doing anything else
+
+//Write to the AXIS_MAP_CONFIG register
+        imu.write8(BNO055IMU.Register.AXIS_MAP_CONFIG,AXIS_MAP_CONFIG_BYTE & 0b111111
+        );
+
+//Write to the AXIS_MAP_SIGN register
+        imu.write8(BNO055IMU.Register.AXIS_MAP_SIGN,AXIS_MAP_SIGN_BYTE & 0b111);
+
+//Need to change back into the IMU mode to use the gyro
+        imu.write8(BNO055IMU.Register.OPR_MODE,BNO055IMU.SensorMode.IMU.bVal & 0b1111);
+
+        sleep(100); //Changing modes again requires a delay
+
+        imu.initialize(parameters);
+
 
         waitForStart();
 
@@ -61,6 +93,7 @@ public class LocalizationTest extends LinearOpMode {
             telemetry.addData("x", poseEstimate.getX());
             telemetry.addData("y", poseEstimate.getY());
             telemetry.addData("heading", poseEstimate.getHeading());
+            telemetry.addData("heading2", imu.getAngularOrientation().firstAngle);;
             telemetry.update();
         }
     }
